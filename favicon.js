@@ -17,7 +17,7 @@
   const sync = () => {
     window.clearInterval(timer);
     if (reducedMotion.matches || document.hidden || frames.length === 0) {
-      icon.href = '/art/orb-light.png';
+      icon.href = '/art/favicon-orb.png';
       return;
     }
     icon.href = frames[frame];
@@ -44,5 +44,5 @@
   reducedMotion.addEventListener('change', sync);
   window.addEventListener('pagehide', () => window.clearInterval(timer));
   window.addEventListener('pageshow', sync);
-  orb.src = '/art/orb-light.png';
+  orb.src = '/art/favicon-orb.png';
 })();
