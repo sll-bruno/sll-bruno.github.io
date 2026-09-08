@@ -3,6 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bruno Salles — Software, Embodied AI and Robotics</title>
+<meta name="description" content="Bruno Salles is a computer engineering student and AI engineer working across machine learning, backend systems, embodied AI and robotics.">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-LSGYK5W5YF"></script>
 <script>
@@ -16,15 +18,20 @@
 <body>
 <x-dc>
 <helmet>
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&amp;display=swap" rel="stylesheet">
 <style>
+  html { scroll-behavior: smooth; }
   body { margin: 0; background: #ebe6da; }
+  section[id] { scroll-margin-top: 40px; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
   a { color: #221f1a; text-decoration: none; }
   a:hover { color: #a6302b; }
   ::selection { background: #a6302b; color: #f6f2e8; }
   @keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+  @keyframes orbspin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+  @keyframes orbbreathe { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.035); } }
   @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
   @media (max-width: 860px) {
     [data-r="orb"] { right: -30% !important; width: 118vw !important; opacity: 0.3 !important; }
@@ -32,25 +39,30 @@
     [data-r="row"] > *:last-child { text-align: left !important; justify-content: flex-start !important; }
     [data-r="hero"] { min-height: auto !important; padding: 76px 0 64px !important; }
     [data-r="aboutgrid"] { grid-template-columns: minmax(0,1fr) !important; gap: 32px !important; }
-    [data-r="photo"] { max-width: 268px !important; }
+    [data-r="photo"] { max-width: 400px !important; }
   }
 </style>
 </helmet>
-<div style="position:relative;min-height:100vh;background:#ebe6da;color:#221f1a;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:13.5px;line-height:1.7;-webkit-font-smoothing:antialiased;overflow:hidden">
+<div style="position: relative; min-height: 100vh; background: #ebe6da; color: #221f1a; font-family: 'JetBrains Mono',ui-monospace,monospace; font-size: 13.5px; line-height: 1.7; -webkit-font-smoothing: antialiased; overflow: hidden">
   <div style="position:fixed;inset:0;z-index:0;pointer-events:none;box-shadow:inset 0 0 16vw 2vw rgba(90,70,50,0.10)"></div>
   <div style="position:fixed;inset:0;z-index:0;pointer-events:none;opacity:0.055;mix-blend-mode:multiply;background-image:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E&quot;)"></div>
 
   <div style="position:relative;z-index:1;max-width:1140px;margin:0 auto;padding:0 clamp(20px,5vw,56px)">
 
     <section data-r="hero" style="position:relative;display:flex;align-items:center;min-height:92vh;padding:72px 0 150px">
-      <img src="art/orb-light.png" alt="" data-r="orb" style="position:absolute;z-index:0;right:-16%;top:48%;width:min(60vw,720px);transform:translateY(-50%);opacity:0.92;pointer-events:none" />
+      <div data-r="orb" style="position:absolute;z-index:0;right:-16%;top:48%;width:min(60vw,720px);transform:translateY(-50%);opacity:0.92;pointer-events:none;perspective:1100px;will-change:transform">
+        <div ref="{{ orbTiltRef }}" style="transform-style:preserve-3d;transition:transform 500ms cubic-bezier(0.2,0.7,0.2,1);will-change:transform">
+          <div style="animation:orbbreathe 14s ease-in-out infinite">
+            <img src="art/orb-light.png" alt="" style="display: block; width: 100%; animation: orbspin 900s linear infinite; will-change: transform">
+          </div>
+        </div>
+      </div>
       <div style="position:relative;z-index:1;max-width:440px;padding-left:22px;border-left:1px solid rgba(18,16,13,0.17);animation:rise 0.6s ease both">
         <h1 style="margin:0;font-size:clamp(26px,3.6vw,38px);font-weight:700;line-height:1.02;letter-spacing:0.01em;color:#12100d">bruno salles</h1>
-        <div style="display:flex;flex-wrap:wrap;gap:4px 10px;margin-top:14px;font-size:11.5px;font-weight:500;letter-spacing:0.18em;color:#5a564d;white-space:nowrap">
-          <span>SÃO PAULO, BR</span><span style="color:#5d594f">·</span><span>COMP. ENG. ’27</span>
-        </div>
-        <div style="margin-top:8px;font-size:10.5px;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;line-height:1.6;color:#5d594f;text-wrap:pretty">
-          Software Engineering, Embodied AI and Robotics
+        <div style="display:flex;flex-direction:column;gap:7px;margin-top:16px">
+          <div style="font-size:11.5px;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;line-height:1.55;color:#3a362e;text-wrap:pretty">Software, Embodied AI and Robotics</div>
+          <div style="font-size:10.5px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:#5d594f">Unicamp · Computer Engineering ’27</div>
+          <div style="font-size:10.5px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:#5d594f">São Paulo, BR</div>
         </div>
         <nav style="display:flex;flex-direction:column;margin-top:52px">
           <sc-for list="{{ nav }}" as="n" hint-placeholder-count="4">
@@ -60,43 +72,45 @@
             </a>
           </sc-for>
         </nav>
-        <div style="display:flex;flex-wrap:wrap;gap:12px 22px;margin-top:26px">
-          <a href="https://www.linkedin.com/in/brunoasalles/" target="_blank" rel="noreferrer" style="display:flex;align-items:center;gap:7px;font-size:10px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:#5a564d;transition:color 200ms ease" style-hover="color:#a6302b">
-            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 1.8h5.4l3 3v9.4H4z"></path><path d="M9.4 1.8v3h3"></path><path d="M6 8.6h4.6"></path><path d="M6 11h3.2"></path></svg>
-            <span>cv</span>
+        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:18px;margin-top:44px">
+          <a href="https://github.com/sll-bruno" target="_blank" rel="noreferrer" aria-label="GitHub" title="GitHub" style="display:flex;align-items:center;justify-content:center;color:#5a564d;transition:color 200ms ease" style-hover="color:#a6302b">
+            <svg width="22.5" height="22.5" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .3a12 12 0 0 0-3.79 23.4c.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.5 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.34-5.47-5.96 0-1.32.47-2.4 1.24-3.24-.13-.31-.54-1.55.12-3.22 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6.01 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.67.25 2.91.12 3.22.77.84 1.24 1.92 1.24 3.24 0 4.63-2.81 5.65-5.49 5.95.43.37.82 1.1.82 2.22v3.29c0 .32.22.7.83.58A12 12 0 0 0 12 .3z"></path></svg>
           </a>
-          <a href="https://www.linkedin.com/in/brunoasalles/" target="_blank" rel="noreferrer" style="display:flex;align-items:center;gap:7px;font-size:10px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:#5a564d;transition:color 200ms ease" style-hover="color:#a6302b">
-            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="12" height="12"></rect><path d="M5.1 6.7V11"></path><path d="M5.1 4.5v0.1"></path><path d="M8.1 11V8.5c0-.9.6-1.5 1.5-1.5s1.5.6 1.5 1.5V11"></path></svg>
-            <span>linkedin</span>
+          <a href="https://www.linkedin.com/in/brunoasalles/" target="_blank" rel="noreferrer" aria-label="LinkedIn" title="LinkedIn" style="display:flex;align-items:center;justify-content:center;color:#5a564d;transition:color 200ms ease" style-hover="color:#a6302b">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><rect x="3" y="3" width="18" height="18"></rect><path d="M7.6 10.6v6.6"></path><rect x="6.9" y="6.9" width="1.5" height="1.5" fill="currentColor" stroke="none"></rect><path d="M11.8 17.2v-6.6"></path><path d="M11.8 13.4c0-1.6 1-2.8 2.6-2.8s2.4 1.2 2.4 2.8v3.8"></path></svg>
           </a>
-          <a href="mailto:brunosalles574@gmail.com" style="display:flex;align-items:center;gap:7px;font-size:10px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:#5a564d;transition:color 200ms ease" style-hover="color:#a6302b">
-            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3.6" width="12" height="8.8"></rect><path d="M2.6 4.3 8 8.7l5.4-4.4"></path></svg>
-            <span>mail</span>
+          <a href="mailto:brunosalles574@gmail.com" aria-label="Mail" title="Mail" style="display:flex;align-items:center;justify-content:center;color:#5a564d;transition:color 200ms ease" style-hover="color:#a6302b">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M2.6 5.4h18.8v13.2H2.6z"></path><path d="M2.6 5.4 12 13l9.4-7.6"></path></svg>
           </a>
-          <a href="https://github.com/sll-bruno" target="_blank" rel="noreferrer" style="display:flex;align-items:center;gap:7px;font-size:10px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:#5a564d;transition:color 200ms ease" style-hover="color:#a6302b">
-            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="4.6" cy="3.9" r="1.7"></circle><circle cx="4.6" cy="12.1" r="1.7"></circle><circle cx="11.4" cy="5.2" r="1.7"></circle><path d="M4.6 5.6v4.8"></path><path d="M10.4 6.7c-.5 1.9-2.4 2.2-3.7 2.6-1 .3-1.7.8-1.9 1.5"></path></svg>
-            <span>github</span>
+          <a href="CV.dc.html" aria-label="CV" title="CV" style="display:flex;align-items:center;justify-content:center;color:#5a564d;transition:color 200ms ease" style-hover="color:#a6302b">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M5 3h9l5 5v13H5z"></path><path d="M14 3v5h5"></path><text x="12" y="17.8" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="6.6" font-weight="500" fill="currentColor" stroke="none">CV</text></svg>
           </a>
         </div>
       </div>
     </section>
 
-    <section id="about" data-r="aboutgrid" style="display:grid;grid-template-columns:minmax(0,600px) 268px;gap:clamp(28px,5vw,64px);align-items:start;padding:8px 0 76px">
+    <section id="about" data-r="aboutgrid" style="display:grid;grid-template-columns:minmax(0,560px) clamp(238px,31vw,430px);justify-content:space-between;gap:clamp(28px,5vw,64px);align-items:start;padding:8px 0 76px">
       <div style="display:flex;flex-direction:column;gap:16px">
         <p style="margin:0;color:#2b2822;text-wrap:pretty">
           I build machine learning and backend systems that carry real weight — payments, credit decisions, pricing, robotic control. At H.IAAC I research curiosity-driven agents for bimanual manipulation, at the intersection of neuroscience and reinforcement learning.
         </p>
         <p style="margin:0;color:#5a564d;text-wrap:pretty">
-          <span style="color:#a6302b">now</span> — ai engineer II at CloudWalk, working on Pierre: a financial agent that reads a person’s accounts through Open Finance and turns a statement nobody understands into plain transparency about their own money. still researching bimanual manipulation at H.IAAC.
+          <span style="color:#a6302b">now</span> — ai engineer II at CloudWalk, working on Pierre: a financial agent that reads a person’s accounts through Open Finance and turns a statement nobody understands into plain transparency about their own money.
+        </p>
+        <p style="margin:0;color:#5a564d;text-wrap:pretty">
+          <span style="color: rgb(166, 48, 43);">now</span> — undergraduate researcher at H.IAAC, on curiosity-driven models for bimanual robotic manipulation, where neuroscience and reinforcement learning meet.
         </p>
       </div>
       <sc-if value="{{ showPhoto }}" hint-placeholder-val="{{ true }}">
-        <figure data-r="photo" style="position:relative;margin:0;background:#ebe6da;border:1px solid rgba(18,16,13,0.22);animation:rise 0.7s ease both">
-          <div style="position:relative;aspect-ratio:4/3;overflow:hidden;background:#ebe6da">
-            <img src="art/portrait.jpeg" alt="Bruno Salles" style="width:100%;height:100%;object-fit:cover;object-position:50% 50%;filter:saturate(0.5) contrast(1.05);display:block" />
-          </div>
-          <figcaption style="padding:9px 11px 10px;border-top:1px solid rgba(18,16,13,0.22);font-size:10px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:#5d594f">unicamp · 2026</figcaption>
-        </figure>
+        <div data-r="photo" style="display:flex;flex-direction:column;width:100%;animation:rise 0.7s ease both">
+          <figure onMouseEnter="{{ onPhotoEnter }}" onMouseLeave="{{ onPhotoLeave }}" style="position:relative;margin:0;background:#ebe6da;border:1px solid {{ photoBorder }};transition:border-color 260ms ease">
+            <div style="position:relative;aspect-ratio:4/3;overflow:hidden;background:#ebe6da">
+              <img src="art/portrait.jpeg" alt="Bruno Salles" style="width:100%;height:100%;object-fit:cover;object-position:50% 50%;display:block;filter:{{ photoFilter }};transform:{{ photoScale }};transition:transform 460ms cubic-bezier(0.2,0.7,0.2,1),filter 320ms ease">
+            </div>
+            <figcaption style="padding:9px 11px 10px;border-top:1px solid {{ photoBorder }};font-size:10px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:#5d594f;transition:border-color 260ms ease">Jardim Da Luz · São Paulo · 2026</figcaption>
+          </figure>
+          <p style="margin:11px 0 0;min-height:32px;font-size:10.5px;font-weight:500;letter-spacing:0.11em;line-height:1.55;text-wrap:pretty;color:{{ noteColor }};opacity:{{ noteOpacity }};transform:{{ noteShift }};transition:opacity 260ms ease,transform 260ms ease,color 260ms ease">one of the my favorite places in são paulo</p>
+        </div>
       </sc-if>
     </section>
 
@@ -171,14 +185,14 @@
   </div>
 
   <footer style="position:relative;z-index:1;height:clamp(280px,36vw,440px);overflow:hidden;border-top:1px solid rgba(18,16,13,0.17)">
-    <img src="art/bands-light.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.85;pointer-events:none" />
+    <img src="art/bands-light.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.85;pointer-events:none">
     <div style="position:absolute;inset:0;background:linear-gradient(180deg,#ebe6da 0%,rgba(235,230,218,0.45) 30%,rgba(235,230,218,0.05) 100%);pointer-events:none"></div>
     <div style="position:relative;max-width:1140px;margin:0 auto;padding:34px clamp(20px,5vw,56px) 0;display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px">
       <div style="display:flex;flex-wrap:wrap;gap:10px 22px;font-size:11px;font-weight:500;letter-spacing:0.16em;text-transform:uppercase">
         <a href="mailto:brunosalles574@gmail.com" style="border-bottom:1px solid rgba(18,16,13,0.17);padding-bottom:3px">mail</a>
         <a href="https://www.linkedin.com/in/brunoasalles/" target="_blank" rel="noreferrer" style="border-bottom:1px solid rgba(18,16,13,0.17);padding-bottom:3px">linkedin</a>
         <a href="https://github.com/sll-bruno" target="_blank" rel="noreferrer" style="border-bottom:1px solid rgba(18,16,13,0.17);padding-bottom:3px">github</a>
-        <a href="https://www.linkedin.com/in/brunoasalles/" target="_blank" rel="noreferrer" style="border-bottom:1px solid rgba(18,16,13,0.17);padding-bottom:3px">cv</a>
+        <a href="CV.dc.html" style="border-bottom:1px solid rgba(18,16,13,0.17);padding-bottom:3px">cv</a>
       </div>
       <span style="font-size:10.5px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:#5a564d;white-space:nowrap">updated sep 2026</span>
     </div>
@@ -188,10 +202,63 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;showPhoto&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;showWriting&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;}}">
 class Component extends DCLogic {
+  state = { photoHover: false };
+
+  componentDidMount() {
+    this.orb = null;
+    this.frame = null;
+    this.scrollY = window.scrollY || 0;
+    this.pointer = { x: 0, y: 0 };
+    this.reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (this.reduce) return;
+
+    this.apply = () => {
+      this.frame = null;
+      if (!this.orb) return;
+      const drift = Math.min(this.scrollY, 1600);
+      const ty = drift * 0.028;
+      const spin = drift * 0.012;
+      const tilt = this.pointer;
+      this.orb.style.transform =
+        "translateY(" + ty.toFixed(2) + "%) rotateX(" + (tilt.y * -1.3).toFixed(2) +
+        "deg) rotateY(" + (tilt.x * 1.7).toFixed(2) + "deg) rotate(" + spin.toFixed(2) + "deg)";
+    };
+    this.schedule = () => {
+      if (this.frame == null) this.frame = requestAnimationFrame(this.apply);
+    };
+    this.onScroll = () => { this.scrollY = window.scrollY || 0; this.schedule(); };
+    this.onMove = (e) => {
+      this.pointer = {
+        x: (e.clientX / window.innerWidth - 0.5) * 2,
+        y: (e.clientY / window.innerHeight - 0.5) * 2
+      };
+      this.schedule();
+    };
+    window.addEventListener("scroll", this.onScroll, { passive: true });
+    window.addEventListener("pointermove", this.onMove, { passive: true });
+    this.schedule();
+  }
+
+  componentWillUnmount() {
+    if (this.frame != null) cancelAnimationFrame(this.frame);
+    window.removeEventListener("scroll", this.onScroll);
+    window.removeEventListener("pointermove", this.onMove);
+  }
+
   renderVals() {
     const showWriting = this.props.showWriting ?? false;
+    const h = this.state.photoHover;
     return {
       showPhoto: this.props.showPhoto ?? true,
+      orbTiltRef: (el) => { this.orb = el; },
+      onPhotoEnter: () => this.setState({ photoHover: true }),
+      onPhotoLeave: () => this.setState({ photoHover: false }),
+      photoBorder: h ? "#7a1f1c" : "rgba(18,16,13,0.22)",
+      photoFilter: h ? "saturate(0.78) contrast(1.07)" : "saturate(0.5) contrast(1.05)",
+      photoScale: h ? "scale(1.035)" : "scale(1)",
+      noteColor: h ? "#7a1f1c" : "#5d594f",
+      noteOpacity: h ? 1 : 0,
+      noteShift: h ? "translateY(0)" : "translateY(-5px)",
       nav: [
         { href: "#about", label: "about" },
         { href: "#projects", label: "projects" },
@@ -205,6 +272,7 @@ class Component extends DCLogic {
         { period: "2024 — 2025", org: "Gerdau", role: "data & ai intern", line: "V2 price elasticity model for dynamic pricing: 7x more high-confidence recommendations, 37% better precision, pipeline 90% faster." }
       ],
       projects: [
+        { year: "2026", title: "aurora", desc: "AI companion for elderly people over WhatsApp — conversation, meds reminders, wellness check-ins, and a panel for family follow-ups. Best project at Na Prática Foundation's Salto. my first time building a product of my own, testing with real users.", stack: "ai agents · whatsapp · entrepreneurship" },
         { year: "2026", title: "aloha-vr", desc: "Real-time VR bimanual teleoperation on AV-ALOHA, joining Meta Quest and MuJoCo to study active vision in fine manipulation. Used by 130+ visitors at UPA 2026.", stack: "mujoco · meta quest · python" },
         { year: "2026", title: "brandloop", desc: "Agentic marketing platform: brand data ingestion, adaptive interviews, market research, copywriting and video generation.", stack: "llm agents · python" },
         { year: "2025", title: "curiosity-driven manipulation", desc: "Ongoing research on intrinsic motivation for agents adapting to dynamic environments.", stack: "pytorch · rl" },
